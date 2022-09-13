@@ -26,7 +26,11 @@ import BasicText from '../text/BasicText';
 function CustomTextInput({
   value,
   onChangeText,
+  onFocus,
+  onBlur,
   placeholder,
+  label,
+  leftIcon,
   placeholderColor = colors.mediumDarkColor,
   style,
   keyboardType,
@@ -36,13 +40,41 @@ function CustomTextInput({
   ...props
 }) {
   const [visible, setVisible] = useState(false);
+  const [focused, setFocused] = useState(false);
   return (
     <>
-      <View style={[styles.main, {...style}]}>
+      <View
+        style={[
+          styles.main,
+          {
+            backgroundColor: !focused ? colors.extraLightColor : null,
+            borderColor: focused
+              ? colors.secondaryDarkColor
+              : colors.extraLightColor,
+            ...style,
+          },
+        ]}>
+        {focused && label ? (
+          <BasicText
+            color={colors.secondaryDarkColor}
+            fontFamily={fontFamilyStyles.PoppinsMedium}
+            size={fontSize.fontSizeBodyMedium}
+            style={styles.label}>
+            {label}
+          </BasicText>
+        ) : null}
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          {leftIcon && <Image source={leftIcon} style={styles.leftIcon} />}
           <TextInput
             style={styles.input}
             value={value}
+            onFocus={() => {
+              setFocused(true);
+            }}
+            onBlur={() => {
+              setFocused(false);
+            }}
+            selectionColor={colors.secondaryDarkColor}
             keyboardType={keyboardType ? keyboardType : 'default'}
             onChangeText={onChangeText}
             placeholderTextColor={placeholderColor}
@@ -51,28 +83,26 @@ function CustomTextInput({
             returnKeyType={returnType}
             {...props}
           />
-          {password ? (
-            <Pressable
+          {password && (
+            <Icon
+              name={visible ? `eye-outline` : 'eye-off-outline'}
+              size={18}
+              color={colors.mediumDarkColor}
               onPress={() => {
                 setVisible(!visible);
-              }}>
-              <Icon
-                name={visible ? `eye-outline` : 'eye-off-outline'}
-                size={18}
-                color={colors.mediumDarkColor}
-              />
-            </Pressable>
-          ) : null}
+              }}
+            />
+          )}
         </View>
       </View>
-      {validationError ? (
+      {validationError && (
         <BasicText
           size={fontSize.fontSizeBodySmall}
           fontFamily={fontFamilyStyles.PoppinsRegular}
           style={styles.validation}>
           {validationError}
         </BasicText>
-      ) : null}
+      )}
     </>
   );
 }
@@ -88,7 +118,7 @@ const styles = StyleSheet.create({
 
     borderRadius: borderRadius.borderRadiusMedium,
     borderWidth: 1.5,
-    borderColor: colors.extraLightColor,
+
     paddingHorizontal: scaling.secondScale,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -98,18 +128,26 @@ const styles = StyleSheet.create({
     flex: 1,
     color: colors.blackColor,
     fontFamily: fontFamilyStyles.PoppinsRegular,
-    minHeight: checkPlatform ? 40 : 30,
-    fontSize: fontSize.fontSizeBodyMedium,
+    top: 2.5,
+    fontSize: fontSize.fontSizeBodyLarge,
   },
-  rightIcon: {
-    width: 20,
-    height: 20,
+  leftIcon: {
+    width: getSize(20),
+    height: getSize(20),
     resizeMode: 'contain',
-    tintColor: colors.mediumDarkColor,
   },
   validation: {
     color: colors.colorError,
     textAlign: 'left',
     width: '80%',
+  },
+  label: {
+    alignSelf: 'flex-start',
+    position: 'absolute',
+    backgroundColor: colors.whiteColor,
+    lineHeight: 14,
+    paddingHorizontal: '2%',
+    bottom: '85%',
+    left: '2.5%',
   },
 });

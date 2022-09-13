@@ -25,10 +25,16 @@ function Login({navigation}) {
         </View>
         <View style={style.middleFormView}>
           <CustomTextInput
+            label={`Email or Username`}
             placeholder={`Email or Username`}
+            onChangeText={e => console.log(e)}
             returnType={'next'}
           />
-          <CustomTextInput password={true} placeholder={`Password`} />
+          <CustomTextInput
+            label={`Password`}
+            password={true}
+            placeholder={`Password`}
+          />
           <Pressable
             onPress={() => {
               navigation.navigate('ResetPassword');
@@ -42,7 +48,10 @@ function Login({navigation}) {
           </Pressable>
         </View>
         <View style={style.bottomContentView}>
-          <CustomButton onPress={() => {}}>{`Login`}</CustomButton>
+          <CustomButton
+            onPress={() => {
+              navigation.replace('Main');
+            }}>{`Login`}</CustomButton>
           <BasicText color={colors.highDarkColor} style={style.signUpText}>
             {`Don’t have an account?`}
 

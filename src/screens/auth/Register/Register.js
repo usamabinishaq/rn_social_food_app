@@ -28,12 +28,25 @@ function Register({navigation}) {
         </View>
         <View style={style.middleFormView}>
           <CustomTextInput
+            label={`Email or Phone number`}
             placeholder={`Email or Phone number`}
             returnType={'next'}
           />
-          <CustomTextInput placeholder={`Full Name`} returnType={'next'} />
-          <CustomTextInput placeholder={`Username`} returnType={'next'} />
-          <CustomTextInput password={true} placeholder={`Password`} />
+          <CustomTextInput
+            label={`Full Name`}
+            placeholder={`Full Name`}
+            returnType={'next'}
+          />
+          <CustomTextInput
+            label={`Username`}
+            placeholder={`Username`}
+            returnType={'next'}
+          />
+          <CustomTextInput
+            label={`Password`}
+            password={true}
+            placeholder={`Password`}
+          />
         </View>
         <View style={style.bottomContentView}>
           <CustomButton

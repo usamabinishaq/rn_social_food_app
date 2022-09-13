@@ -98,8 +98,18 @@ export const image_user_4 = require('../assets/images/user4.png');
 export const image_user_5 = require('../assets/images/user5.png');
 export const image_user_6 = require('../assets/images/user6.png');
 
+export const image_Profile_Frame = require('../assets/images/profile_frame.png');
+
 export const image_splash_bg = require('../assets/images/splash_bg.png');
 export const image_onBoarding_bg_left = require('../assets/images/onBoarding_bg_left.png');
 export const image_onBoarding_bg_center = require('../assets/images/onBoarding_center.png');
 
 export const image_onBoarding_bg_right = require('../assets/images/onBoarding_bg_right.png');
+
+export const image_food_1 = require('../assets/images/food1.png');
+export const image_food_2 = require('../assets/images/food2.png');
+export const image_food_3 = require('../assets/images/food3.png');
+export const image_food_4 = require('../assets/images/food4.png');
+export const image_food_5 = require('../assets/images/food5.png');
+export const image_food_6 = require('../assets/images/food6.png');
+export const image_food_7 = require('../assets/images/food7.png');

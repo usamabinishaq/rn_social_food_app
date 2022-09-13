@@ -12,24 +12,32 @@ const CustomOtpTextInput = forwardRef((props, ref) => {
   return (
     <TextInput
       ref={ref}
-      caretHidden={true}
+      caretHidden={false}
       style={[
         styles.otpInput,
         {
           backgroundColor: props.otpStatus
             ? colors.extraLightColor
             : colors.whiteColor,
+          borderColor:
+            props.verification === 'error'
+              ? colors.colorError
+              : props.focused || props.verification === 'verified'
+              ? colors.secondaryDarkColor
+              : colors.extraLightColor,
         },
       ]}
       maxLength={1}
       keyboardType="numeric"
       returnKeyType={props.returnType}
-      autoFocus={true}
+      //Something is wrong
+      autoFocus={props.focused}
       onKeyPress={props.onKeyPress(props.type)}
       onFocus={props.onFocus(props.type)}
       onSubmitEditing={props.onSubmitEditing(props.type)}
       onChangeText={props.onChangeText(props.type)}
       blurOnSubmit={false}
+      selectionColor={colors.secondaryDarkColor}
     />
   );
 });
@@ -47,6 +55,5 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     textAlign: 'center',
     color: colors.extraDarkColor,
-    borderColor: colors.extraLightColor,
   },
 });

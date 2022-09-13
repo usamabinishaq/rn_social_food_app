@@ -1,3 +1,4 @@
+import QB from 'quickblox-react-native-sdk';
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
 import {getAsyncObject} from '../../../components/AsyncStorage';

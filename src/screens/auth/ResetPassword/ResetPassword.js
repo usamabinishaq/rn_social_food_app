@@ -35,7 +35,7 @@ function ResetPassword({}) {
           </BasicText>
         </View>
         <View style={style.otpFormView}>
-          <OtpInput />
+          <OtpInput code={'1234'} />
           <BasicText
             color={colors.secondaryDarkColor}
             size={fontSize.fontSizeBodyLarge}

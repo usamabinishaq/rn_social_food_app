@@ -29,7 +29,12 @@ const Appbar = ({
         size={fontSize.fontSizeH3}
         fontFamily={fontFamilyStyles.PoppinsMedium}
         color={colors.extraDarkColor}
-        style={styles.title}>
+        style={{
+          flex: 1,
+          right: leftIcon ? '15%' : null,
+          left: rightIcon ? '15%' : null,
+          textAlign: 'center',
+        }}>
         {title}
       </Heading>
       {rightIcon && (
@@ -57,9 +62,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {width: getSize(24), height: getSize(24), resizeMode: 'contain'},
-  title: {
-    flex: 1,
-    right: '15%',
-    textAlign: 'center',
-  },
 });
